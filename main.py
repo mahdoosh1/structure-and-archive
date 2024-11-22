@@ -59,10 +59,8 @@ class FILE(Structure):
         self.add_func(["data_len_int"], size_of, "len_len_int")
         self.add_func(["len_len_int"], lambda x: x.to_bytes(1, 'big'), "len_len")
         self.add_func(["data_len_int", "len_len_int"], lambda x, y: x.to_bytes(y, 'big'), "data_len")
-    def update_struct(self, pairs):
-        raise NotImplementedError("This is a frozen class")
-    def add_func(self, input_names, func, output_name, name=None):
-        raise NotImplementedError("This is a frozen class")
+        self.update_struct = None
+        self.add_func = None
 FILE = FILE()
 file = FILE.run_funcs
 
@@ -75,10 +73,8 @@ class DIR(Structure):
         self.add_func(["name"],lambda x: len(x).to_bytes(1,'big'),"name_len")
         self.add_func(["files"],lambda x: b''.join(x),"file_bytes")
         self.add_func(["files"],lambda x: len(x).to_bytes(2,'big'),"file_count")
-    def update_struct(self, pairs):
-        raise NotImplementedError("This is a frozen class")
-    def add_func(self, input_names, func, output_name, name=None):
-        raise NotImplementedError("This is a frozen class")
+        self.update_struct = None
+        self.add_func = None
 DIR = DIR()
 dir = DIR.run_funcs
 
